@@ -1,8 +1,13 @@
-import { type NextRequest } from "next/server";
+import { type NextRequest, userAgent, NextResponse } from "next/server";
 import { updateSession } from "@/utils/supabase/middleware";
 
 export async function middleware(request: NextRequest) {
-  return await updateSession(request);
+  const url = request.nextUrl
+  const { device } = userAgent(request)
+  const viewport = device.type === 'mobile' ? 'mobile' : 'desktop'
+  url.searchParams.set('user-agent', viewport)
+  await updateSession(request);
+  return NextResponse.rewrite(url) 
 }
 
 export const config = {

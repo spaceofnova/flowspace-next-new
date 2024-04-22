@@ -23,7 +23,7 @@ export default function Page() {
   return (
     <div className="grid">
       <div className="flex w-full gap-4 p-4">
-        <h1 className="text-4xl font-bold w-48">All Apps</h1>
+        <h1 className="text-4xl font-bold w-48 hidden lg:block">All Apps</h1>
         <input
           type="search"
           name="apps_search"
@@ -52,26 +52,26 @@ export default function Page() {
           }}
         />
       </div>
-      <div className="flex gap-6 flex-wrap mx-auto w-11/12 mt-4">
+      <div className="flex flex-col lg:flex-row gap-6 flex-wrap p-4 lg:mx-auto lg:w-11/12 w-full lg:mt-4" >
         {games?.map((game: any) => {
           return (
             <div
               onClick={() => {
                 showPlayer(game.id);
               }}
-              className="h-32 w-32 aspect-sqaure bg-base-300 shadow-xl image-cover flex flex-col relative cursor-pointer overflow-hidden rounded-md"
+              className={"h-24 lg:h-32 lg:w-32 lg:aspect-sqaure bg-base-300 flex lg:flex-col relative lg:cursor-pointer lg:overflow-hidden rounded-box p-2 lg:p-0 " + (!game.mobile ? "hidden lg:flex" : "")}
               key={game.id}
             >
               <Image
                 src={game.img}
                 alt="Game Image"
-                className="w-full h-full object-cover"
-                fill
-                sizes="(max-inline-size: 768px) 100vw, (max-inline-size: 1200px) 50vw, 33vw"
-                loading="lazy"
+                className="lg:w-full min-h-full rounded-lg object-cover aspect-square"
+                width={80}
+                height={80}
               />
-              <div className="text-center w-full items-center absolute bottom-0 z-10 bg-base-300/90">
-                <p className="text-sm">{game.name}</p>
+              <div className="lg:text-center lg:w-full lg:items-center lg:absolute lg:bottom-0 lg:z-10 lg:bg-base-300/90 ml-2 mt-1 lg:m-0 text-xl font-medium w-full">
+                <p className="lg:text-sm">{game.name}</p>
+                <button className="w-full btn lg:hidden">Play</button>
               </div>
             </div>
           );

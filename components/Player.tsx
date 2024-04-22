@@ -45,9 +45,6 @@ export function Player({
     };
     loadGame();
   }, []);
-  const reloadCurrentGame = () => {
-    
-  }
   return (
     <>
       <dialog id="my_modal_3" className="modal">
@@ -78,7 +75,7 @@ export function Player({
         </div>
       </dialog>
       <div className="w-full h-full fixed z-20 bg-black/50 opacity-0 animate-fadein">
-        <div className="join join-vertical absolute right-16 top-4 bg-base-300 ">
+        <div className="join join-horizontal lg:join-vertical absolute right-2 lg:right-16 bottom-[4rem] lg:top-4 bg-base-300 ">
           {closeButton}
 
           <button
@@ -161,7 +158,7 @@ export function Player({
             </svg>
           </button>
         </div>
-        <div className="w-9/12 aspect-video absolute inset-0 mx-auto my-auto bg-base-300 z-20 rounded-md overflow-y-auto overflow-x-hidden block animate-slideup">
+        <div className="w-[calc(100%-1rem)] h-[calc(100%-8rem)] lg:w-9/12 lg:aspect-video -top-28 lg:top-0 absolute inset-0 mx-auto my-auto bg-base-300 z-20 rounded-md overflow-y-auto overflow-x-hidden block animate-slideup">
           <iframe src={gameInfo.url} className="w-full h-full bg-transparent" id="gameFrame"></iframe>
         </div>
       </div>

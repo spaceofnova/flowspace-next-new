@@ -28,7 +28,11 @@ export default function RootLayout({
         <meta name="theme-color" content="#1d232a" />
       </head>
       <body className="bg-background text-foreground h-screen w-screen flex flex-col overflow-hidden">
-        <NextTopLoader />
+        <NextTopLoader
+          showAtBottom={true}
+          showSpinner={false}
+          color="#00cdb8"
+        />
         {children}
       </body>
     </html>

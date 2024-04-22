@@ -5,12 +5,33 @@ import { Player, usePlayer } from "@/components/Player";
 import Image from "next/image";
 
 export default function Page() {
-  const supabase = createClient();
-
   const [games, setGames] = useState<any | undefined>([]);
   const { showPlayer, hidePlayer, playerConfig } = usePlayer();
 
+  const searchGames = async (event: any) => {
+    const supabase = createClient();
+    const searchTerm = event.target.value;
+
+    if (searchTerm.length > 0) {
+      // Only search if something is typed
+      let { data: games, error } = await supabase
+        .from("games")
+        .select()
+        .ilike("name", `%${searchTerm}%`);
+
+      if (error) {
+        console.error("Search error:", error);
+      } else {
+        setGames(games);
+      }
+    } else {
+      let { data: games } = await supabase.from("games").select();
+      setGames(games);
+    }
+  }
+
   useEffect(() => {
+    const supabase = createClient();
     const loadGames = async () => {
       let { data: games, error } = await supabase.from("games").select();
       if (error) console.error("Error loading games:", error);
@@ -30,26 +51,7 @@ export default function Page() {
           placeholder="Search Apps.."
           className="input input-bordered w-full"
           autoComplete="off"
-          onChange={async (event) => {
-            const searchTerm = event.target.value;
-
-            if (searchTerm.length > 0) {
-              // Only search if something is typed
-              let { data: games, error } = await supabase
-                .from("games")
-                .select()
-                .ilike("name", `%${searchTerm}%`);
-
-              if (error) {
-                console.error("Search error:", error);
-              } else {
-                setGames(games);
-              }
-            } else {
-              let { data: games } = await supabase.from("games").select();
-              setGames(games);
-            }
-          }}
+          onChange={searchGames}
         />
       </div>
       <div className="flex flex-col lg:flex-row gap-6 flex-wrap p-4 lg:mx-auto lg:w-11/12 w-full lg:mt-4" >

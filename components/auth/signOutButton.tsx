@@ -7,7 +7,7 @@ export default function SignOutButton() {
 
     const supabase = createClient();
     await supabase.auth.signOut();
-    return redirect("/login");
+    return redirect("/auth/login");
   };
 
   return (

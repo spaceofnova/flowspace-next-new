@@ -3,7 +3,6 @@ import { headers } from "next/headers";
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
 import { SubmitButton } from "./submit-button";
-import { SignInWithGoogleButton } from "@/components/auth/socialButtons";
 
 export default function SignUp({
   searchParams,
@@ -31,7 +30,6 @@ export default function SignUp({
           first_name: firstName,
           last_name: lastName,
         },
-        emailRedirectTo: `${origin}/auth/callback`,
       },
     });
 
@@ -39,7 +37,7 @@ export default function SignUp({
       return redirect("/signup?message=Could not sign up user");
     }
 
-    return redirect("/signup?message=Check email to continue sign in process");
+    return redirect("/web");
   };
 
   return (

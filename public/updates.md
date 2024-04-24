@@ -1,6 +1,22 @@
+## Decent update (v0.5.7 Beta 4f24j2024)
+
+### Main Changes:
+
+- Added a password reset screen
+- Added a screen to request a link
+- Added a top bar loader to make the loading feel better
+
+### Minor Changes:
+
+- General optimzations
+- re-done nav
+- re-done player
+- fixed user profile
+
 ## Massive Update!! (v0.5.3 - Beta 4e21g2024)
 
 ### Main changes:
+
 - Switched to supabase for like, everything (supabase is MUCH faster than clerk)
 - Minor fixes
 - This might seem like a small update but trust me it took a WHILE to do (Mainly cause the switch to the much faster supabase auth)
@@ -24,8 +40,6 @@
 
 - Fixed navigation not being sticky
 - Fixed a couple of performance issues
-
-
 
 ## This is a Massive update (v0.4.4)!!
 

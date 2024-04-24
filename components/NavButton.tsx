@@ -26,28 +26,3 @@ export default function NavButton({
     </Link>
   );
 }
-
-export function MobileNavButton({
-  children,
-  href,
-}: {
-  children: React.ReactNode;
-  href: string;
-}) {
-  const currentPath = usePathname();
-  return (
-    <Link
-      href={href}
-      className="flex w-full items-center rounded pt-4 pb-4 relative"
-      title={href}
-    >
-      <div
-        className={`w-6 h-6 m-auto after:w-0  ${
-          currentPath === href ? "text-accent" : ""
-        }`}
-      >
-        {children}
-      </div>
-    </Link>
-  );
-}

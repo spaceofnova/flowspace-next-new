@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { headers } from "next/headers";
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
 import { SubmitButton } from "./submit-button";
@@ -22,12 +21,11 @@ export default function Login({
     });
 
     if (error) {
-      return redirect("/login?message=Could not authenticate user");
+      return redirect("/auth/login?message=Incorrect email or password");
     }
 
     return redirect("/web");
   };
-
   return (
     <div className="flex-1 flex flex-col px-8 w-full justify-center gap-2">
       <Link
@@ -54,7 +52,6 @@ export default function Login({
       <form className="animate-in flex-1 flex flex-col w-full justify-center gap-4 text-foreground mx-auto sm:max-w-sm">
         <h1 className="text-3xl font-bold">Sign in</h1>
         <p className="-translate-y-3">To continue to Flowspace</p>
-
         <label className="text-md" htmlFor="email">
           Email
         </label>
@@ -90,6 +87,12 @@ export default function Login({
           Don't have an account?{" "}
           <Link className="link" href={"/signup"}>
             Sign Up
+          </Link>
+        </span>
+        <span className="w-full text-center">
+          Forgot your password?{" "}
+          <Link className="link" href={"/auth/reset"}>
+            Reset Password
           </Link>
         </span>
       </form>

@@ -28,7 +28,7 @@ export default function Page() {
       let { data: games } = await supabase.from("games").select();
       setGames(games);
     }
-  }
+  };
 
   useEffect(() => {
     const supabase = createClient();
@@ -44,7 +44,6 @@ export default function Page() {
   return (
     <div className="grid">
       <div className="flex w-full gap-4 p-4">
-        <h1 className="text-4xl font-bold w-48 hidden lg:block">All Apps</h1>
         <input
           type="search"
           name="apps_search"
@@ -54,26 +53,26 @@ export default function Page() {
           onChange={searchGames}
         />
       </div>
-      <div className="flex flex-col lg:flex-row gap-6 flex-wrap p-4 lg:mx-auto lg:w-11/12 w-full lg:mt-4" >
+      <div className="flex gap-4 flex-wrap p-4 h-full w-[calc(100%-3rem)] mx-auto">
         {games?.map((game: any) => {
           return (
             <div
               onClick={() => {
                 showPlayer(game.id);
               }}
-              className={"h-24 lg:h-32 lg:w-32 lg:aspect-sqaure bg-base-300 flex lg:flex-col relative lg:cursor-pointer lg:overflow-hidden rounded-box p-2 lg:p-0 " + (!game.mobile ? "hidden lg:flex" : "")}
+              className="h-28 w-36 bg-base-300 flex flex-col relative cursor-pointer overflow-hidden rounded-md p-0 "
               key={game.id}
             >
               <Image
                 src={game.img}
                 alt="Game Image"
-                className="lg:w-full min-h-full rounded-lg object-cover aspect-square"
-                width={80}
-                height={80}
+                className="lg:w-full rounded-lg object-cover aspect-square"
+                width={180}
+                height={128}
+                priority={true}
               />
-              <div className="lg:text-center lg:w-full lg:items-center lg:absolute lg:bottom-0 lg:z-10 lg:bg-base-300/90 ml-2 mt-1 lg:m-0 text-xl font-medium w-full">
-                <p className="lg:text-sm">{game.name}</p>
-                <button className="w-full btn lg:hidden">Play</button>
+              <div className="text-center w-full items-center absolute bottom-0 z-10 bg-base-300/90 text-xl font-medium">
+                <p className="text-sm">{game.name}</p>
               </div>
             </div>
           );

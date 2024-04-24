@@ -1,18 +1,6 @@
-import { createClient } from "@/utils/supabase/server";
-import { redirect } from "next/navigation";
+"use client";
 
-export default async function Page() {
-
-
-  const supabase = createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
-  if (!user) {
-    redirect("/login");
-  }
-
+export default function Page() {
   let greeting;
   const currentHour = new Date().getHours();
 
@@ -26,9 +14,7 @@ export default async function Page() {
   return (
     <>
       <div className="p-4">
-        <h1 className="text-4xl font-bold">
-          {greeting + ", " + user?.user_metadata?.first_name + "!"}
-        </h1>
+        <h1 className="text-4xl font-bold">{greeting + "!"}</h1>
       </div>
     </>
   );

@@ -40,7 +40,7 @@ export default function Home() {
           </ul>
         </div>
         <div className="navbar-end gap-2">
-          <Link href="/login" className="btn btn-outline">
+          <Link href="/auth/login" className="btn btn-outline">
             Login
           </Link>
           <Link

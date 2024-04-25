@@ -5,8 +5,8 @@ import Image from "next/image";
 
 export default function Nav() {
   return (
-    <div className="absolute left-0 top-0 flex flex-col w-12 pl-[6.5px] pr-2 h-full bg-base-300 z-40 justify-between">
-      <nav className="mt-4 flex">
+    <div className="absolute left-0 top-0 flex flex-col w-14 pl-[2.5px] pr-1 h-full bg-base-300 z-40 justify-between">
+      <nav className="mt-1 flex">
         <div className="dropdown dropdown-right">
           <div
             tabIndex={0}
@@ -14,11 +14,12 @@ export default function Nav() {
             className="flex w-full items-center rounded"
           >
             <Image
-              src="/icon.png"
+              src="/images/icons/maskable_icon.png"
               alt="Flowspace Logo"
-              width={48}
-              height={48}
+              width={56}
+              height={56}
               placeholder="empty"
+              className="rounded-md"
             />
           </div>
           <div

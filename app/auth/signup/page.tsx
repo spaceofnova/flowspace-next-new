@@ -129,6 +129,7 @@ export default function SignUp({
           formAction={signUp}
           className="btn"
           pendingText="Signing Up..."
+          pendingClass="btn btn-disabled"
         >
           Sign Up
         </SubmitButton>

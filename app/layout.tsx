@@ -1,4 +1,3 @@
-import NextTopLoader from "nextjs-toploader";
 import { GeistSans } from "geist/font/sans";
 import "./globals.css";
 
@@ -28,11 +27,6 @@ export default function RootLayout({
         <meta name="theme-color" content="#1d232a" />
       </head>
       <body className="bg-background text-foreground h-screen w-screen flex flex-col overflow-hidden">
-        <NextTopLoader
-          showSpinner={true}
-          shadow={false}
-          color="#00cdb8"
-        />
         {children}
       </body>
     </html>

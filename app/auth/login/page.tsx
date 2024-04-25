@@ -26,6 +26,7 @@ export default function Login({
 
     return redirect("/web");
   };
+  
   return (
     <div className="flex-1 flex flex-col px-8 w-full justify-center gap-2">
       <Link
@@ -48,17 +49,20 @@ export default function Login({
         </svg>{" "}
         Back
       </Link>
-
       <form className="animate-in flex-1 flex flex-col w-full justify-center gap-4 text-foreground mx-auto sm:max-w-sm">
         <h1 className="text-3xl font-bold">Sign in</h1>
         <p className="-translate-y-3">To continue to Flowspace</p>
+
         <label className="text-md" htmlFor="email">
           Email
         </label>
         <input
           className="input input-bordered"
           name="email"
+          id="email"
+          type="email"
           placeholder="you@example.com"
+          autoComplete="username"
           required
         />
         <label className="text-md" htmlFor="password">
@@ -68,13 +72,16 @@ export default function Login({
           className="input input-bordered"
           type="password"
           name="password"
+          id="password"
           placeholder="••••••••"
           required
+          autoComplete="current-password"
         />
         <SubmitButton
           formAction={signIn}
           className="btn btn-primary"
           pendingText="Signing In..."
+          pendingClass="btn btn-disabled"
         >
           Sign In
         </SubmitButton>
@@ -84,13 +91,10 @@ export default function Login({
           </p>
         )}
         <span className="w-full text-center">
-          Don't have an account?{" "}
-          <Link className="link" href={"/signup"}>
+          <Link className="link" href={"/auth/signup"}>
             Sign Up
           </Link>
-        </span>
-        <span className="w-full text-center">
-          Forgot your password?{" "}
+          {" | "}
           <Link className="link" href={"/auth/reset"}>
             Reset Password
           </Link>

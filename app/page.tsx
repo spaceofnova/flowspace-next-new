@@ -43,11 +43,8 @@ export default function Home() {
           <Link href="/auth/login" className="btn btn-outline">
             Login
           </Link>
-          <Link
-            href="https://forms.gle/vzQMoAxsUbFiTkNd7"
-            className="btn btn-primary"
-          >
-            Join Beta
+          <Link href={"/auth/signup"} className="btn btn-primary">
+            Sign Up
           </Link>
         </div>
       </div>
@@ -60,9 +57,9 @@ export default function Home() {
           the grind.
         </p>
         <div className="flex flex-col w-fit m-auto">
-          <button className="btn disabled hover:cursor-not-allowed">
-            Not released yet, but you can join the beta!
-          </button>
+        <Link href={"/auth/signup"} className="btn btn-primary">
+            Get Started!
+          </Link>
           <small>Not convinced yet? Scroll down!</small>
         </div>
       </header>
@@ -101,9 +98,9 @@ export default function Home() {
         <h2 className="text-xl font-bold lg:text-3xl">
           School grind got you down?
         </h2>
-        <button className="btn disabled hover:cursor-not-allowed mt-2 mb-24">
-          Not released yet, but you can join the beta!
-        </button>
+        <Link href={"/auth/signup"} className="btn btn-primary mt-24 mb-24">
+            Get Started!
+          </Link>
       </div>
       <footer className="footer items-center p-4 text-neutral-content">
         <aside className="items-center grid-flow-col">

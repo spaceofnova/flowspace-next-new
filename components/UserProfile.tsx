@@ -22,8 +22,6 @@ export default function UserProfile() {
     };
     const supabase = createClient();
     supabase.auth.onAuthStateChange((event, session) => {
-      console.log(event, session);
-
       if (event === "USER_UPDATED") {
         fetchUser();
       }

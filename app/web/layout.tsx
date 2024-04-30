@@ -3,6 +3,7 @@ import Nav from "@/components/Nav";
 import NextTopLoader from "nextjs-toploader";
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
+import RunOnce from "@/components/runOnce";
 
 export default async function Layout({
   children,
@@ -16,6 +17,7 @@ export default async function Layout({
   }
   return (
     <>
+      <RunOnce />
       <Nav />
       <NextTopLoader
         showSpinner={true}

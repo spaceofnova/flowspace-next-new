@@ -11,6 +11,7 @@ export default function Page() {
   } else {
     greeting = "Good Evening";
   }
+
   return (
     <>
       <div className="p-4">

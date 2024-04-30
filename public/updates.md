@@ -1,3 +1,9 @@
+## Pretty good sized update! (v0.6.5 Beta 4a29g2024)
+
+### Main changes:
+- Starting the proccess for add-ons (+ A free test add-on!)
+- General Optimizations
+
 ## Decent update (v0.5.7 Beta 4f24j2024)
 
 ### Main Changes:

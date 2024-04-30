@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 
 import DevPanelSettings from "@/components/settings/DevPanel";
 import UserProfile from "@/components/UserProfile";
+import AddonManger from "@/components/addons/AddonManger";
 
 export default function Page() {
   const [page, setPage] = useState(0);
@@ -19,6 +20,11 @@ export default function Page() {
     },
     {
       id: 2,
+      name: "Add-ons",
+      content: <AddonManger />,
+    },
+    {
+      id: 3,
       name: "Developer",
       content: <DevPanelSettings />,
     },
@@ -27,7 +33,7 @@ export default function Page() {
   return (
     <div className="flex flex-col h-full w-full gap-4 p-4">
       <h1 className="text-3xl font-medium">Settings</h1>
-      <div className="flex flex-row p-1 border-2 border-primary/10 gap-2 rounded-xl w-fit">
+      <div className="flex flex-row p-1 border-2 border-primary/10 gap-2 rounded-xl w-fit backdrop-blur-md">
         {pages.map((item: any) => (
           <button
             key={item.id}

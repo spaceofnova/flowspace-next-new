@@ -60,7 +60,7 @@ export default function Page() {
               onClick={() => {
                 showPlayer(game.id);
               }}
-              className="h-28 w-36 bg-base-300 flex flex-col relative cursor-pointer overflow-hidden rounded-md p-0 "
+              className="h-28 w-36 bg-base-300 flex flex-col relative cursor-pointer overflow-hidden rounded-md p-0 animate-in"
               key={game.id}
             >
               <Image

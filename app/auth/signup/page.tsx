@@ -34,7 +34,7 @@ export default function SignUp({
     });
 
     if (error) {
-      return redirect("/signup?message=Could not sign up user");
+      return redirect("/auth/signup?message=Could not sign up user");
     }
 
     return redirect("/web");
@@ -140,7 +140,7 @@ export default function SignUp({
         )}
         <span className="w-full text-center">
           Already have an account?{" "}
-          <Link className="link" href={"/login"}>
+          <Link className="link" href={"/auth/login"}>
             Log in
           </Link>
         </span>

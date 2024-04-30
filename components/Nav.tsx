@@ -2,6 +2,7 @@ import Link from "next/link";
 import SignOutButton from "./auth/signOutButton";
 import NavButton from "./NavButton";
 import Image from "next/image";
+import AddonButtons from "./addons/AddonButtons";
 
 export default function Nav() {
   return (
@@ -106,6 +107,7 @@ export default function Nav() {
             />
           </svg>
         </NavButton>
+        <AddonButtons />
       </nav>
       <nav className="flex">
         <NavButton href="/web/settings">

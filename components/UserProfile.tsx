@@ -31,11 +31,8 @@ export default function UserProfile() {
 
   const handleSave = async () => {
     const supabase = createClient();
-    const firstName = (
-      document.querySelector('input[name="firstName"]') as HTMLInputElement
-    ).value;
-    const lastName = (
-      document.querySelector('input[name="lastName"]') as HTMLInputElement
+    const display_name = (
+      document.querySelector('input[name="display_name"]') as HTMLInputElement
     ).value;
 
     const bio = (
@@ -44,8 +41,7 @@ export default function UserProfile() {
 
     const { error } = await supabase.auth.updateUser({
       data: {
-        first_name: firstName.toString(),
-        last_name: lastName.toString(),
+        display_name: display_name.toString(),
         bio: bio.toString(),
       },
     });
@@ -70,9 +66,7 @@ export default function UserProfile() {
             {!isLoading && (
               <div className="card-body">
                 <h1 className="card-title text-2xl">
-                  {user?.user_metadata?.first_name +
-                    " " +
-                    user?.user_metadata?.last_name}
+                  {!user?.user_metadata?.display_name ? "Anonymous" : user?.user_metadata?.display_name}
                 </h1>
                 <p className="opacity-50">@{user?.user_metadata?.username}</p>
                 <div className="form-control">
@@ -96,21 +90,12 @@ export default function UserProfile() {
           <div className="card w-96 bg-base-300 h-[90%]">
             <div className="card-body">
               <div className="form-control">
-                <label className="label">First Name</label>
+                <label className="label">Display Name</label>
                 <input
                   type="text"
                   className="input"
-                  name="firstName"
-                  defaultValue={user?.user_metadata?.first_name}
-                />
-              </div>
-              <div className="form-control">
-                <label className="label">Last Name</label>
-                <input
-                  type="text"
-                  className="input"
-                  name="lastName"
-                  defaultValue={user?.user_metadata?.last_name}
+                  name="display_name"
+                  defaultValue={user?.user_metadata?.display_name}
                 />
               </div>
               <div className="form-control">

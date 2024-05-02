@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { headers } from "next/headers";
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
 import { SubmitButton } from "./submit-button";
@@ -9,15 +8,16 @@ export default function SignUp({
 }: {
   searchParams: { message: string };
 }) {
+  const supabase = createClient();
+  if (supabase.auth.getUser() !== null) {
+    redirect("/web");
+  }
   const signUp = async (formData: FormData) => {
     "use server";
-
-    const origin = headers().get("origin");
     const email = formData.get("email") as string;
     const password = formData.get("password") as string;
     const username = formData.get("username") as string;
-    const firstName = formData.get("firstName") as string;
-    const lastName = formData.get("lastName") as string;
+    const displayName = formData.get("display_name") as string;
     const supabase = createClient();
 
     const { error } = await supabase.auth.signUp({
@@ -27,8 +27,7 @@ export default function SignUp({
       options: {
         data: {
           username,
-          first_name: firstName,
-          last_name: lastName,
+          display_name: displayName,
         },
       },
     });
@@ -69,25 +68,14 @@ export default function SignUp({
         <div className="flex w-full gap-4">
           <label className="form-control w-full">
             <div className="label">
-              <span className="label-text">First Name</span>
+              <span className="label-text">Display Name</span>
             </div>
             <input
               type="text"
               placeholder="Type here"
               className="input input-bordered w-full"
-              name="firstName"
+              name="display_name"
               required
-            />
-          </label>
-          <label className="form-control w-full">
-            <div className="label">
-              <span className="label-text">Last Name (optional)</span>
-            </div>
-            <input
-              type="text"
-              placeholder="Type here"
-              className="input input-bordered w-full"
-              name="lastName"
             />
           </label>
         </div>

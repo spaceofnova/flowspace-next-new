@@ -1,5 +1,7 @@
 import { GeistSans } from "geist/font/sans";
+import { createClient } from "@/utils/supabase/server";
 import "./globals.css";
+import { redirect } from "next/navigation";
 
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
@@ -8,7 +10,7 @@ const defaultUrl = process.env.VERCEL_URL
 export const metadata = {
   metadataBase: new URL(defaultUrl),
   title: "Flowspace",
-  description: "A simple and powerful site powered by Supabase.",
+  description: "Flowspace, The one and only place for your games!",
 };
 
 export default function RootLayout({

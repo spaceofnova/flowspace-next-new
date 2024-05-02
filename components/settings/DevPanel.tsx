@@ -1,6 +1,6 @@
 export default function DevPanelSettings() {
   return (
-    <div className="lg:w-1/2 w-full h-full flex justify-center items-center gap-4 border-2 border-white/20 shadow-lg bg-base-200 card prose">
+    <div className="w-11/12 h-full flex justify-center items-center gap-4 border-2 border-white/20 shadow-lg bg-base-200 card prose">
       <h1 className="card-title">Dev Panel</h1>
       <div className="h-96 w-full p-4 flex flex-row">
         <div className="h-96 w-1/2 flex flex-col gap-2 rounded-box overflow-hidden">
@@ -12,8 +12,8 @@ export default function DevPanelSettings() {
           <div className="w-full h-full bg-info rounded-md"></div>
         </div>
         <div className="w-1/2">
-        <textarea name="" id="" className="w-full h-full bg-base-100 rounded-box pl-4">
-          Enter code here to be executed: 
+        <textarea defaultValue={"Enter code here to be executed: "} name="" id="" className="w-full h-full bg-base-100 rounded-box pl-4">
+          
         </textarea>
         <button className="w-full btn btn-primary" onClick={() => eval(document.querySelector("textarea")?.value?.trim()!)}>Execute</button>
       </div>

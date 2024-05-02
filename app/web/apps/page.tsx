@@ -6,27 +6,39 @@ import Image from "next/image";
 
 export default function Page() {
   const [games, setGames] = useState<any | undefined>([]);
+  const [gameObjects, setGameObjects] = useState<any | undefined>([]);
   const { showPlayer, hidePlayer, playerConfig } = usePlayer();
 
   const searchGames = async (event: any) => {
-    const supabase = createClient();
     const searchTerm = event.target.value;
 
     if (searchTerm.length > 0) {
       // Only search if something is typed
-      let { data: games, error } = await supabase
-        .from("games")
-        .select()
-        .ilike("name", `%${searchTerm}%`);
-
-      if (error) {
-        console.error("Search error:", error);
+      if (gameObjects) {
+        setGames(gameObjects.filter(
+          (game: any) => game.name.toLowerCase().includes(searchTerm.toLowerCase())
+        ));
       } else {
-        setGames(games);
+        const supabase = createClient();
+        let { data: games, error } = await supabase
+          .from("games")
+          .select()
+          .ilike("name", `%${searchTerm}%`);
+
+        if (error) {
+          console.error("Search error:", error);
+        } else {
+          setGames(games);
+        }
       }
     } else {
+      if (gameObjects) {
+        setGames(gameObjects);
+      }else {
+      const supabase = createClient();
       let { data: games } = await supabase.from("games").select();
       setGames(games);
+      }
     }
   };
 
@@ -37,6 +49,7 @@ export default function Page() {
       if (error) console.error("Error loading games:", error);
       else {
         setGames(games); // Initially show all games
+        setGameObjects(games);
       }
     };
     loadGames();

@@ -1,9 +1,10 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import DevPanelSettings from "@/components/settings/DevPanel";
 import UserProfile from "@/components/UserProfile";
 import AddonManger from "@/components/addons/AddonManger";
+import KioskModeSettings from "@/components/settings/KioskModeSettings";
 
 export default function Page() {
   const [page, setPage] = useState(0);
@@ -28,6 +29,11 @@ export default function Page() {
       name: "Developer",
       content: <DevPanelSettings />,
     },
+    {
+      id: 4,
+      name: "Kiosk Mode",
+      content: <KioskModeSettings />,
+    }
   ];
 
   return (

@@ -7,7 +7,6 @@ export default function AddonButtons() {
   const [buttons, setButtons] = useState<any>([]);
   useEffect(() => {
     window.addEventListener("registerNewNavButton", (event: any) => {
-      console.log(event.detail);
       setButtons([...buttons, event.detail]);
     });
   }, []);

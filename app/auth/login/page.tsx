@@ -8,6 +8,10 @@ export default function Login({
 }: {
   searchParams: { message: string };
 }) {
+  const supabase = createClient();
+  if (supabase.auth.getUser() !== null) {
+    redirect("/web");
+  }
   const signIn = async (formData: FormData) => {
     "use server";
 
@@ -26,7 +30,7 @@ export default function Login({
 
     return redirect("/web");
   };
-  
+
   return (
     <div className="flex-1 flex flex-col px-8 w-full justify-center gap-2">
       <Link

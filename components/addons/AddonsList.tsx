@@ -38,7 +38,14 @@ export default function AddonsList() {
           className="card card-compact w-96 bg-base-300 animate-in"
         >
           <div className="card-body">
-            <h2 className="card-title mt-0">{addon.name}{" "}{addon.isVerified ? <span className="badge badge-success">Verified</span> : <span className="badge badge-error">Unverified</span>}</h2>
+            <h2 className="card-title mt-0">
+              {addon.name}{" "}
+              {addon.isVerified ? (
+                <span className="badge badge-success">Verified</span>
+              ) : (
+                <span className="badge badge-error">Unverified</span>
+              )}
+            </h2>
             <p>
               {addon.desc} <br /> {addon.author} - {addon.version}
             </p>

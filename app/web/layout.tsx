@@ -4,6 +4,7 @@ import NextTopLoader from "nextjs-toploader";
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
 import RunOnce from "@/components/runOnce";
+import Loader from "@/components/Loader";
 
 export default async function Layout({
   children,
@@ -17,6 +18,7 @@ export default async function Layout({
   }
   return (
     <>
+      <Loader />
       <RunOnce />
       <Nav />
       <NextTopLoader

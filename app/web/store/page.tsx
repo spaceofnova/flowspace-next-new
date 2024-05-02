@@ -8,7 +8,7 @@ export default function Page() {
       <div className="w-full p-4 prose">
         <h1>Welcome to the Store!</h1>
 
-        <h3>Addons: </h3>
+        <h3>Verified Addons: </h3>
         <AddonsList />
       </div>
     </>

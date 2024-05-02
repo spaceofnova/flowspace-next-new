@@ -58,7 +58,6 @@ export const getInstalledAddons = () => {
 };
 
 export const initializeAddons = async () => {
-  if (window.localStorage) {
     const ids = localStorage.getItem("installedAddons")
     ? JSON.parse(localStorage.getItem("installedAddons")!)
     : [];
@@ -75,6 +74,5 @@ export const initializeAddons = async () => {
         loadAndEval(addon.raw);
       });
     }
-  }
   }
 };

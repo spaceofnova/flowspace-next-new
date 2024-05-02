@@ -1,7 +1,13 @@
+import { createClient } from "@/utils/supabase/server";
 import Image from "next/image";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 
 export default function Home() {
+  const supabase = createClient();
+  if (supabase.auth.getUser() !== null) {
+    redirect("/web");
+  }
   return (
     <div className="overflow-y-auto">
       <div className="navbar bg-base-100">
@@ -57,7 +63,7 @@ export default function Home() {
           the grind.
         </p>
         <div className="flex flex-col w-fit m-auto">
-        <Link href={"/auth/signup"} className="btn btn-primary">
+          <Link href={"/auth/signup"} className="btn btn-primary">
             Get Started!
           </Link>
           <small>Not convinced yet? Scroll down!</small>
@@ -99,8 +105,8 @@ export default function Home() {
           School grind got you down?
         </h2>
         <Link href={"/auth/signup"} className="btn btn-primary mt-24 mb-24">
-            Get Started!
-          </Link>
+          Get Started!
+        </Link>
       </div>
       <footer className="footer items-center p-4 text-neutral-content">
         <aside className="items-center grid-flow-col">

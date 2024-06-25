@@ -27,7 +27,7 @@ useEffect(() => {
         </Link>
         <div className="flex items-center gap-2">
           <Link to="/">
-            <p className="text-xl font-bold">Flowspace</p>
+            <p className="text-xl font-bold">Flowspace - Dev</p>
           </Link>
         </div>
       </div>

@@ -9,9 +9,6 @@ export default function SignUp({
   searchParams: { message: string };
 }) {
   const supabase = createClient();
-  if (supabase.auth.getUser() !== null) {
-    redirect("/web");
-  }
   const signUp = async (formData: FormData) => {
     "use server";
     const email = formData.get("email") as string;

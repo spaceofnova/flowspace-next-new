@@ -4,10 +4,6 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 
 export default function Home() {
-  const supabase = createClient();
-  if (supabase.auth.getUser() !== null) {
-    redirect("/web");
-  }
   return (
     <div className="overflow-y-auto">
       <div className="navbar bg-base-100">

@@ -21,7 +21,7 @@ export default function Header() {
       <div className="flex items-center gap-4">
         <Link to="/">
           <img
-            src="/icon.png"
+            src="/images/icons/icon-48x48.png"
             className="h-8 w-8"
             alt="Flowspace Logo"
             width={48}

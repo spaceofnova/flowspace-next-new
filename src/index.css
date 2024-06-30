@@ -1,316 +1,76 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-body {
-  margin: 0;
-  font-family: "Inter";
-  font-weight: 400;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 3.9%;
 
-h1,
-h2,
-h3,
-h4,
-h5 {
-  font-family: "Inter";
-  font-weight: 700;
-}
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 3.9%;
 
-html {
-  font-size: 100%;
-} /* 16px */
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 3.9%;
 
-h1 {
-  font-size: 4.21rem; /* 67.36px */
-}
+    --primary: 0 0% 9%;
+    --primary-foreground: 0 0% 98%;
 
-h2 {
-  font-size: 3.158rem; /* 50.56px */
-}
+    --secondary: 0 0% 96.1%;
+    --secondary-foreground: 0 0% 9%;
 
-h3 {
-  font-size: 2.369rem; /* 37.92px */
-}
+    --muted: 0 0% 96.1%;
+    --muted-foreground: 0 0% 45.1%;
 
-h4 {
-  font-size: 1.777rem; /* 28.48px */
-}
+    --accent: 0 0% 96.1%;
+    --accent-foreground: 0 0% 9%;
 
-h5 {
-  font-size: 1.333rem; /* 21.28px */
-}
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
 
-small {
-  font-size: 0.75rem; /* 12px */
-}
+    --border: 0 0% 89.8%;
+    --input: 0 0% 89.8%;
+    --ring: 0 0% 3.9%;
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
-}
-
-.animate-in {
-  animation: animateIn 0.3s ease 0.15s both;
-}
-
-@keyframes animateIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
+    --radius: 0.5rem;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
 
-.inverted-border-radius::before {
-  content: "";
-  position: absolute;
+  .dark {
+    --background: 0 0% 3.9%;
+    --foreground: 0 0% 98%;
 
-  background-color: transparent;
-  top: 0px;
-  height: 50px;
-  width: 25px;
-  right: -25px;
-  border-top-left-radius: 10px;
-  box-shadow: 0 -25px 0 0 #15191e;
-}
-.container {
-  position: relative;
-  display: block;
-  width: 70vh;
-  height: 70vh;
-  transform-style: preserve-3d;
-  transform: perspective(1000px) rotateY(45deg) rotateX(45deg);
-}
-.circle:nth-child(0) {
-  position: absolute;
-  background: transparent;
-  border: 2px solid #fff;
-  border-radius: 50%;
-  left: 0vh;
-  top: 0vh;
-  width: 70vh;
-  height: 70vh;
-  -webkit-animation: spin Infinitys infinite linear;
-  animation: spin Infinitys infinite linear;
-}
-.circle:nth-child(1) {
-  position: absolute;
-  background: transparent;
-  border: 2px solid #fff;
-  border-radius: 50%;
-  left: 2.1875vh;
-  top: 2.1875vh;
-  width: 65.625vh;
-  height: 65.625vh;
-  -webkit-animation: spin 12s infinite linear;
-  animation: spin 12s infinite linear;
-}
-.circle:nth-child(2) {
-  position: absolute;
-  background: transparent;
-  border: 2px solid #fff;
-  border-radius: 50%;
-  left: 4.375vh;
-  top: 4.375vh;
-  width: 61.25vh;
-  height: 61.25vh;
-  -webkit-animation: spin 6s infinite linear;
-  animation: spin 6s infinite linear;
-}
-.circle:nth-child(3) {
-  position: absolute;
-  background: transparent;
-  border: 2px solid #fff;
-  border-radius: 50%;
-  left: 6.5625vh;
-  top: 6.5625vh;
-  width: 56.875vh;
-  height: 56.875vh;
-  -webkit-animation: spin 4s infinite linear;
-  animation: spin 4s infinite linear;
-}
-.circle:nth-child(4) {
-  position: absolute;
-  background: transparent;
-  border: 2px solid #fff;
-  border-radius: 50%;
-  left: 8.75vh;
-  top: 8.75vh;
-  width: 52.5vh;
-  height: 52.5vh;
-  -webkit-animation: spin 3s infinite linear;
-  animation: spin 3s infinite linear;
-}
-.circle:nth-child(5) {
-  position: absolute;
-  background: transparent;
-  border: 2px solid #fff;
-  border-radius: 50%;
-  left: 10.9375vh;
-  top: 10.9375vh;
-  width: 48.125vh;
-  height: 48.125vh;
-  -webkit-animation: spin 2.4s infinite linear;
-  animation: spin 2.4s infinite linear;
-}
-.circle:nth-child(6) {
-  position: absolute;
-  background: transparent;
-  border: 2px solid #fff;
-  border-radius: 50%;
-  left: 13.125vh;
-  top: 13.125vh;
-  width: 43.75vh;
-  height: 43.75vh;
-  -webkit-animation: spin 2s infinite linear;
-  animation: spin 2s infinite linear;
-}
-.circle:nth-child(7) {
-  position: absolute;
-  background: transparent;
-  border: 2px solid #fff;
-  border-radius: 50%;
-  left: 15.3125vh;
-  top: 15.3125vh;
-  width: 39.375vh;
-  height: 39.375vh;
-  -webkit-animation: spin 1.714285714285714s infinite linear;
-  animation: spin 1.714285714285714s infinite linear;
-}
-.circle:nth-child(8) {
-  position: absolute;
-  background: transparent;
-  border: 2px solid #fff;
-  border-radius: 50%;
-  left: 17.5vh;
-  top: 17.5vh;
-  width: 35vh;
-  height: 35vh;
-  -webkit-animation: spin 1.5s infinite linear;
-  animation: spin 1.5s infinite linear;
-}
-.circle:nth-child(9) {
-  position: absolute;
-  background: transparent;
-  border: 2px solid #fff;
-  border-radius: 50%;
-  left: 19.6875vh;
-  top: 19.6875vh;
-  width: 30.625vh;
-  height: 30.625vh;
-  -webkit-animation: spin 1.333333333333333s infinite linear;
-  animation: spin 1.333333333333333s infinite linear;
-}
-.circle:nth-child(10) {
-  position: absolute;
-  background: transparent;
-  border: 2px solid #fff;
-  border-radius: 50%;
-  left: 21.875vh;
-  top: 21.875vh;
-  width: 26.25vh;
-  height: 26.25vh;
-  -webkit-animation: spin 1.2s infinite linear;
-  animation: spin 1.2s infinite linear;
-}
-.circle:nth-child(11) {
-  position: absolute;
-  background: transparent;
-  border: 2px solid #fff;
-  border-radius: 50%;
-  left: 24.0625vh;
-  top: 24.0625vh;
-  width: 21.875vh;
-  height: 21.875vh;
-  -webkit-animation: spin 1.090909090909091s infinite linear;
-  animation: spin 1.090909090909091s infinite linear;
-}
-.circle:nth-child(12) {
-  position: absolute;
-  background: transparent;
-  border: 2px solid #fff;
-  border-radius: 50%;
-  left: 26.25vh;
-  top: 26.25vh;
-  width: 17.5vh;
-  height: 17.5vh;
-  -webkit-animation: spin 1s infinite linear;
-  animation: spin 1s infinite linear;
-}
-.circle:nth-child(13) {
-  position: absolute;
-  background: transparent;
-  border: 2px solid #fff;
-  border-radius: 50%;
-  left: 28.4375vh;
-  top: 28.4375vh;
-  width: 13.125vh;
-  height: 13.125vh;
-  -webkit-animation: spin 0.923076923076923s infinite linear;
-  animation: spin 0.923076923076923s infinite linear;
-}
-.circle:nth-child(14) {
-  position: absolute;
-  background: transparent;
-  border: 2px solid #fff;
-  border-radius: 50%;
-  left: 30.625vh;
-  top: 30.625vh;
-  width: 8.75vh;
-  height: 8.75vh;
-  -webkit-animation: spin 0.857142857142857s infinite linear;
-  animation: spin 0.857142857142857s infinite linear;
-}
-.circle:nth-child(15) {
-  position: absolute;
-  background: transparent;
-  border: 2px solid #fff;
-  border-radius: 50%;
-  left: 32.8125vh;
-  top: 32.8125vh;
-  width: 4.375vh;
-  height: 4.375vh;
-  -webkit-animation: spin 0.8s infinite linear;
-  animation: spin 0.8s infinite linear;
-}
-.circle:nth-child(16) {
-  position: absolute;
-  background: transparent;
-  border: 2px solid #fff;
-  border-radius: 50%;
-  left: 35vh;
-  top: 35vh;
-  width: 0vh;
-  height: 0vh;
-  -webkit-animation: spin 0.75s infinite linear;
-  animation: spin 0.75s infinite linear;
-}
-.circle:nth-child(2n) {
-  border: 2px dashed rgba(255, 255, 255, 0.5);
-}
-.circle:last-child {
-  display: none;
-}
-@-webkit-keyframes spin {
-  0% {
-    transform: rotateX(0deg);
-  }
-  100% {
-    transform: rotateX(360deg);
+    --card: 0 0% 3.9%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 0 0% 3.9%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 9%;
+
+    --secondary: 0 0% 14.9%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
+
+    --accent: 0 0% 14.9%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 14.9%;
+    --input: 0 0% 14.9%;
+    --ring: 0 0% 83.1%;
   }
 }
-@keyframes spin {
-  0% {
-    transform: rotateX(0deg);
+
+@layer base {
+  * {
+    @apply border-border;
   }
-  100% {
-    transform: rotateX(360deg);
+  body {
+    @apply bg-background text-foreground;
   }
 }

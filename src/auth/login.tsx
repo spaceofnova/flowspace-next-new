@@ -1,15 +1,30 @@
 import supabase from "../utils/supabase";
 import { useNavigate, Link } from "react-router-dom";
-import { SubmitButton } from "./submit-button";
-import { Input } from "../components/ui/input";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import SyncLoader from "react-spinners/SyncLoader";
+
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { useState } from "react";
 
 export default function Login() {
   const navigate = useNavigate();
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
 
-  const signIn = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const signIn = async () => {
+    setLoading(true);
     const email = (document.getElementById("email") as HTMLInputElement).value;
-    const password = (document.getElementById("password") as HTMLInputElement).value;
+    const password = (document.getElementById("password") as HTMLInputElement)
+      .value;
 
     const { error } = await supabase().auth.signInWithPassword({
       email,
@@ -17,10 +32,12 @@ export default function Login() {
     });
 
     if (error) {
-      navigate("/auth/login?message=Incorrect email or password");
+      setError(error.message);
+      setLoading(false);
+    } else {
+      setLoading(false);
+      navigate("/web");
     }
-
-    navigate("/web");
   };
 
   return (
@@ -46,49 +63,61 @@ export default function Login() {
         Back
       </Link>
       <div className="">
-        <form className="animate-in flex flex-col w-full justify-center gap-4 text-foreground mx-auto sm:max-w-sm border border-white/10 p-6 rounded-xl h-fit bg-white/5" onSubmit={signIn}>
-          <h1 className="text-3xl font-bold">Sign in</h1>
-          <p className="-translate-y-3">To continue to Flowspace</p>
-
-          <label className="text-md" htmlFor="email">
-            Email
-          </label>
-          <Input
-            name="email"
-            id="email"
-            type="email"
-            placeholder="you@example.com"
-            autoComplete="username"
-            required
-          />
-          <label className="text-md" htmlFor="password">
-            Password
-          </label>
-          <Input
-            type="password"
-            name="password"
-            id="password"
-            placeholder="••••••••"
-            required
-            autoComplete="current-password"
-          />
-          <SubmitButton
-            className="p-2 border border-white/20 rounded-md bg-primary/10 hover:bg-primary/50 transition-colors transition-300 ease-in text-sm"
-            pendingText="Signing In..."
-            pendingClass="disabled"
-          >
-            Sign In
-          </SubmitButton>
-          <span className="w-full text-center">
-            <Link className="link" to={"/auth/signup"}>
-              Sign Up
-            </Link>
-            {" | "}
-            <Link className="link" to={"/auth/reset"}>
-              Reset Password
-            </Link>
-          </span>
-        </form>
+        <Card className="animate-in flex flex-col w-full justify-center text-foreground mx-auto sm:max-w-sm border border-white/10 p-2 rounded-xl h-fit bg-white/5">
+          <CardHeader>
+            <CardTitle>Login</CardTitle>
+            <CardDescription>To continue to Flowspace</CardDescription>
+          </CardHeader>
+          <CardContent className="flex flex-col gap-4">
+            <div className="grid w-full max-w-sm items-center gap-1.5">
+              <Label htmlFor="email">Email</Label>
+              <Input
+                id="email"
+                type="email"
+                placeholder="you@example.com"
+                autoComplete="email"
+                required
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    document.getElementById("password")?.focus();
+                  }
+                }}
+              />
+            </div>
+            <div className="grid w-full max-w-sm items-center gap-1.5">
+              <Label htmlFor="password">Password</Label>
+              <Input
+                id="password"
+                type="password"
+                placeholder="••••••••"
+                required
+                autoComplete="current-password"
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    document.getElementById("login")?.click();
+                  }
+                }}
+              />
+            </div>
+          </CardContent>
+          <CardFooter>
+            <Button
+              onClick={signIn}
+              className="w-full flex justify-between"
+              disabled={loading}
+              id="login"
+            >
+              Login{" "}
+              <SyncLoader
+                loading={loading}
+                size={8}
+                color="currentColor"
+                aria-label="Loading Spinner"
+              />
+            </Button>
+          </CardFooter>
+          {error && <p className="mx-auto text-red-500">{error}</p>}
+        </Card>
       </div>
     </div>
   );

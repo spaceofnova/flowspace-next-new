@@ -13,6 +13,7 @@ import Settings from "./web/Settings";
 import AppPlayer from "./web/AppPlayer";
 import ErrorPage from "./components/ErrorPage";
 import { middleware } from "./middleware";
+import { ThemeProvider } from "./components/providers/ThemeProvider";
 
 const router = createBrowserRouter([
   {
@@ -63,6 +64,8 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+      <RouterProvider router={router} />
+    </ThemeProvider>
   </React.StrictMode>
 );

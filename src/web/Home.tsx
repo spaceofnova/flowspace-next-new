@@ -3,6 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import { useOutletContext, Link } from "react-router-dom";
 import { UserSettingsContext } from "../components/contexts/UserSettingsContext";
 import { FiX } from "react-icons/fi";
+import { Button } from "@/components/ui/button";
 
 interface Item {
   id: string;
@@ -34,7 +35,11 @@ export default function Home() {
       <div className="flex flex-col justify-between h-full">
         <div>
           <h1 className="text-4xl font-bold text-default [text-shadow:_0_1px_10px_rgb(0_0_0_/_40%)] flex gap-2 items-center">
-            {greeting + ", " + (user?.user_metadata.first_name || user?.user_metadata.display_name) + "!"}
+            {greeting +
+              ", " +
+              (user?.user_metadata.first_name ||
+                user?.user_metadata.display_name) +
+              "!"}
           </h1>
         </div>
         <div className="-translate-y-8">
@@ -50,7 +55,7 @@ export default function Home() {
               />
             )}
           </h2>
-
+          <Button className="mt-4">View All</Button>
           {recentItems.length > 0 ? (
             <div className="flex gap-4 mt-4">
               {recentItems.map((item: Item) => (

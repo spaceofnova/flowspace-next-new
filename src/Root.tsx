@@ -2,12 +2,13 @@ import { Link } from "react-router-dom";
 import Header from "./components/ui/Header";
 import FancyCard from "./components/ui/fancy-card";
 import { Hero } from "./components/ui/hero";
+import { buttonVariants } from "./components/ui/button";
 
 export default function Root() {
   return (
-    <div className="bg-background text-text">
+    <>
       <Header />
-      <div className="overflow-y-auto w-full animate-in">
+      <div className="overflow-y-auto w-full">
         <Hero />
         <div className="flex flex-col lg:flex-row gap-12 w-11/12 m-auto lg:h-96 h-fit items-center justify-center">
           <FancyCard>
@@ -47,7 +48,7 @@ export default function Root() {
           </h2>
           <Link
             to="/auth/signup"
-            className="border border-white/10 rounded-md p-2 hover:bg-white/10 transition-colors"
+            className={buttonVariants({ variant: "outline" })}
           >
             Get Started!
           </Link>
@@ -79,7 +80,7 @@ export default function Root() {
             <Link
               to="https://twitter.com/flowspaceupdate"
               aria-label="X (Formerly Twitter) Page (Flowspace Updates)"
-              className="border border-white/10 rounded-md p-2 hover:bg-white/10 transition-colors"
+              className={buttonVariants({ variant: "outline" })}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -95,7 +96,7 @@ export default function Root() {
             <Link
               to="https://patreon.com/FlowspaceApp?utm_medium=online&utm_source=flowspacesite&utm_campaign=landingpage"
               aria-label="Patreon Page"
-              className="border border-white/10 rounded-md p-2 hover:bg-white/10 transition-colors"
+              className={buttonVariants({ variant: "outline" })}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -112,6 +113,6 @@ export default function Root() {
           </div>
         </footer>
       </div>
-    </div>
+    </>
   );
 }

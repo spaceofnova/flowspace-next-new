@@ -1,12 +1,26 @@
-import { Link, useNavigate } from "react-router-dom";
 import supabase from "../utils/supabase";
-import { SubmitButton } from "./submit-button";
-import { Input } from "../components/ui/input";
+import { useNavigate, Link } from "react-router-dom";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import SyncLoader from "react-spinners/SyncLoader";
 
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { useState } from "react";
 export default function SignUp() {
   const navigate = useNavigate();
-  const signUp = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
+
+  const signUp = async () => {
+    setLoading(true);
     const email = (document.getElementById("email") as HTMLInputElement).value;
     const password = (document.getElementById("password") as HTMLInputElement)
       .value;
@@ -29,10 +43,13 @@ export default function SignUp() {
     });
 
     if (error) {
+      setError(error.message);
+      setLoading(false);
       return navigate("/auth/signup?message=Could not sign up user");
+    } else {
+      setLoading(false);
+      return navigate("/web");
     }
-
-    return navigate("/web");
   };
 
   return (
@@ -57,81 +74,89 @@ export default function SignUp() {
         </svg>{" "}
         Back
       </Link>
-      <div className="">
-        <form
-          className="animate-in flex flex-col w-full justify-center gap-4 text-foreground mx-auto sm:max-w-sm border border-white/10 p-6 rounded-xl h-fit bg-white/5"
-          onSubmit={signUp}
-        >
-          <h1 className="text-3xl font-bold">Create your Account</h1>
-          <p className="-translate-y-3">To continue to Flowspace</p>
-          <div className="flex w-full gap-4">
-            <label className="form-control w-full">
-              <div className="label">
-                <span className="label-text">Display Name</span>
-              </div>
-              <Input
-                type="text"
-                placeholder="Type here"
-                className="input input-bordered w-full"
-                name="display_name"
-                id="display_name"
-                required
-              />
-            </label>
-          </div>
-          <label className="form-control w-full">
-            <div className="label">
-              <span className="label-text">Username</span>
-            </div>
+      <Card className="animate-in flex flex-col w-full justify-center text-foreground mx-auto sm:max-w-sm border border-white/10 p-2 rounded-xl h-fit bg-white/5">
+        <CardHeader>
+          <CardTitle>Create your Account</CardTitle>
+          <CardDescription>To continue to Flowspace</CardDescription>
+        </CardHeader>
+        <CardContent className="flex flex-col gap-4">
+          <div className="grid w-full max-w-sm items-center gap-1.5">
+            <Label htmlFor="email">Email</Label>
             <Input
+              id="email"
+              type="email"
+              placeholder="you@example.com"
+              autoComplete="email"
+              required
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  document.getElementById("password")?.focus();
+                }
+              }}
+            />
+          </div>
+          <div className="grid w-full max-w-sm items-center gap-1.5">
+            <Label htmlFor="display_name">Display Name</Label>
+            <Input
+              id="display_name"
               type="text"
               placeholder="Type here"
-              className="input input-bordered w-full"
-              name="username"
+              required
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  document.getElementById("password")?.focus();
+                }
+              }}
+            />
+          </div>
+          <div className="grid w-full max-w-sm items-center gap-1.5">
+            <Label htmlFor="username">Username</Label>
+            <Input
               id="username"
-              required
-            />
-          </label>
-          <label className="form-control w-full">
-            <div className="label">
-              <span className="label-text">Email:</span>
-            </div>
-            <Input
               type="text"
-              placeholder="you@example.com"
-              className="input input-bordered w-full"
-              name="email"
-              id="email"
+              placeholder="Type here"
               required
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  document.getElementById("password")?.focus();
+                }
+              }}
             />
-          </label>
-          <label className="form-control w-full">
-            <label className="text-md" htmlFor="password">
-              Password:
-            </label>
+          </div>
+          <div className="grid w-full max-w-sm items-center gap-1.5">
+            <Label htmlFor="password">Password</Label>
             <Input
-              type="password"
-              name="password"
-              placeholder="••••••••"
               id="password"
+              type="password"
+              placeholder="••••••••"
               required
+              autoComplete="current-password"
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  document.getElementById("login")?.click();
+                }
+              }}
             />
-          </label>
-          <SubmitButton
-            className="p-2 border border-white/20 rounded-md bg-primary/10 hover:bg-primary/50 transition-colors transition-300 ease-in text-sm"
-            pendingText="Signing Up..."
-            pendingClass="disabled"
+          </div>
+        </CardContent>
+        <CardFooter>
+          <Button
+            onClick={signUp}
+            className="w-full flex justify-between"
+            disabled={loading}
+            id="login"
           >
-            Sign Up
-          </SubmitButton>
-          <span className="w-full text-center">
-            Already have an account?{" "}
-            <Link className="link" to={"/auth/login"}>
-              Log in
-            </Link>
-          </span>
-        </form>
-      </div>
+            Sign Up{" "}
+            <SyncLoader
+              loading={loading}
+              size={8}
+              color="currentColor"
+              aria-label="Loading Spinner"
+            />
+          </Button>
+        </CardFooter>
+        {error && <p className="mx-auto text-red-500">{error}</p>}
+      </Card>
     </div>
   );
 }

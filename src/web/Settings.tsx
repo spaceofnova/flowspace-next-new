@@ -1,7 +1,6 @@
 import React from "react";
 import Apperance from "../components/settings/Apperance";
 import Profile from "../components/settings/Profile";
-import DevToggle from "../components/dev/devToggle";
 import Div from "../components/ui/elements/Div";
 
 export default function Settings() {
@@ -16,11 +15,6 @@ export default function Settings() {
       id: 1,
       name: "Apperance",
       content: <Apperance />,
-    },
-    {
-      id: 2,
-      name: "Developer Tools",
-      content: <DevToggle />,
     },
   ];
   return (

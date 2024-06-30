@@ -1,5 +1,4 @@
 import React from "react";
-import { MaterialYouColors } from "../dev/genColors";
 export interface UserSettings {
   theme?: "light" | "dark";
   backgroundType?: "color" | "image";
@@ -8,7 +7,6 @@ export interface UserSettings {
     type: "local" | "remote";
     author?: string;
   };
-  colors?: MaterialYouColors;
   devTools?: boolean;
   blurEffects?: boolean;
 }

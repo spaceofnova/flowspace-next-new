@@ -2,6 +2,7 @@ import supabase from "../../utils/supabase";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { User } from "@supabase/supabase-js";
+import { buttonVariants } from "../ui/button";
 
 export default function AuthButtons() {
   const [user, setUser] = useState<User | undefined>(undefined);
@@ -32,23 +33,20 @@ export default function AuthButtons() {
       {loading ? (
         <></>
       ) : user ? (
-        <Link
-          to="/web"
-          className="border border-white/10 rounded-md p-2 hover:bg-white/10 transition-colors"
-        >
+        <Link to="/web" className={buttonVariants({ variant: "outline" })}>
           Go to Web
         </Link>
       ) : (
         <>
           <Link
             to="/auth/login"
-            className="border border-white/10 rounded-md p-2 hover:bg-white/10 transition-colors"
+            className={buttonVariants({ variant: "outline" })}
           >
             Sign In
           </Link>
           <Link
             to="/auth/signup"
-            className="border border-white/10 rounded-md p-2 hover:bg-white/10 transition-colors"
+            className={buttonVariants({ variant: "outline" })}
           >
             Sign Up
           </Link>

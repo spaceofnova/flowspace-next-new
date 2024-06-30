@@ -2,6 +2,14 @@ import { Link, useLocation } from "react-router-dom";
 import { FiGrid, FiHome, FiSettings, FiShoppingBag } from "react-icons/fi";
 import { User } from "@supabase/supabase-js";
 import Div from "./elements/Div";
+import supabase from "@/utils/supabase";
+
+const logOut = async () => {
+  const { error } = await supabase().auth.signOut();
+  if (error) {
+    console.log(error);
+  }
+};
 
 export default function Nav({ user }: { user: User }) {
   const location = useLocation();
@@ -33,7 +41,12 @@ export default function Nav({ user }: { user: User }) {
     <Div className="absolute left-0 top-0 flex flex-col w-12 h-full z-40 justify-between">
       <div>
         <div>
-          <img src="/images/icons/icon-72x72.png" alt="Flowspace Logo" className="w-full aspect-square p-2" />
+          <img
+            onClick={logOut}
+            src="/images/icons/icon-72x72.png"
+            alt="Flowspace Logo"
+            className="w-full aspect-square p-2"
+          />
         </div>
         {NavPages.map((page) => (
           <Link

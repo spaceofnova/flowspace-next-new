@@ -41,11 +41,11 @@
   ],
   "start_url": "/web",
   "display": "standalone",
-  "background_color": "#15191e",
-  "theme_color": "#15191e",
+  "background_color": "#000000",
+  "theme_color": "#000000",
   "id": "flowspace_pwa_native",
   "description": "The one and only place for your games!",
   "dir": "ltr",
   "orientation": "portrait",
-  "display_override": [ "standalone"]
+  "display_override": ["standalone"]
 }
